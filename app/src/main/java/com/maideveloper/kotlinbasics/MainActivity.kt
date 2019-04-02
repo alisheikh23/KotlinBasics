@@ -2,13 +2,18 @@ package com.maideveloper.kotlinbasics
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.person.*
 
 class MainActivity : AppCompatActivity() {
 
+    var ageText:Int?=null//? means we don't know whether it will remain null or not. otherwise it will give error.It will avoid app crash
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
+//        setContentView(R.layout.activity_main)
+        setContentView(R.layout.person)
 
 
         //Difference between var=variable and val=constant
@@ -22,10 +27,10 @@ class MainActivity : AppCompatActivity() {
         println("x :"+x)
 
 
-        var name="Ali"
-        var double=3.45//in these variable we don't have data type restriction. we can assign any type of value
-        var number=5
-        var bool=true
+        val name="Ali"
+        val double=3.45//in these variable we don't have data type restriction. we can assign any type of value
+        val number=5
+        val bool=true
 
         println("String :"+name)
         println("Double :"+double)
@@ -34,10 +39,10 @@ class MainActivity : AppCompatActivity() {
 
 
         //Pre-defined data types
-        var name1:String="Ali"//here we defined type and so it's value is restricted with respect to its type
-        var double1:Double=3.6//This variable can't store other than double value
-        var number1:Int=5
-        var bool1:Boolean=false
+        val name1:String="Ali"//here we defined type and so it's value is restricted with respect to its type
+        val double1:Double=3.6//This variable can't store other than double value
+        val number1:Int=5
+        val bool1:Boolean=false
 
         println("String :"+name1)
         println("Double :"+double1)
@@ -67,7 +72,7 @@ class MainActivity : AppCompatActivity() {
         //To increase size and add as many values as we want we use Array Lists
 
         //Lists/ArrayList
-        var myArrayList= arrayListOf<Int>()
+        val myArrayList= arrayListOf<Int>()
         myArrayList.add(1)
         myArrayList.add(2)
         myArrayList.add(1)
@@ -157,7 +162,7 @@ class MainActivity : AppCompatActivity() {
 
 
         //Switch Statement. Sometime it is better to use 'switch' than 'if' to make code elegant and efficient
-        var day=1
+        val day=1
         var dayString=" "
         if (day==1){
             println("Monday")
@@ -224,8 +229,81 @@ class MainActivity : AppCompatActivity() {
             j++
         }
 
+
+
+
+        //Calling Test function
+        test()
+
+        //Calling sum function
+        println("Sum Function :"+sum(5,5))
+
+
+        //Calling makePerson() function
+        makePerson()
+
+
+        //Calling Sum class and function
+        val sums=Sum()//Sum object created
+        println("Sum Inheritance: "+sums.sum(5,3))
+        println("Sum Inherited Division: "+sums.div(4.5,2.2))
+    }
+
+//Functions:
+    //Activity contains class
+    //Class contains function
+    // 'fun' is used in kotlin for creating function
+    fun test(){
+    val c=6
+    println("Test Function: "+c)
+}
+    //creating another function that has parameters and return type
+    fun sum(a:Int,b:Int):Int{// It means 'a' and 'b' are integer type and 'return type' is also integer
+        return a+b
     }
 
 
+    //Function with objects such as TextViews, Buttons etc
+    fun clickMe(view:View){
+        textView.text="Hello World"
+    }
+
+
+    //Creating Person class object to access that class and pass values
+    fun makePerson(){
+        val per=Person("Ali",23,"Male")
+        println("Name: "+per.name+" Age: "+per.age+" Gender: "+per.gender)
+    }
+
+    fun personInfo(view:View){//if we enter nothing in age then our app will crash so for this we use null in int.
+        val nameText=name.text.toString()
+
+        if (!age.text.toString().equals("")){
+             ageText=age.text.toString().toInt()
+        }
+        else{
+            ageText=null
+        }
+
+        val genderText=gender.text.toString()
+
+        val person=Person(nameText,ageText,genderText)
+       personView.text="Name: "+person.name+" Age: "+person.age+" Gender: "+person.gender
+    }
+
+
+
+    //Inheritance
+    class Sum:Div(){//Sum class is inheriting Div class
+        fun sum( a:Int, b:Int):Int{
+        return a+b
+    }
+    }
+    open class Div{//open means accessable. By default it is final
+        fun div( c:Double, d:Double):Double{
+        return c/d
+
+    }
+    }
 
 }
