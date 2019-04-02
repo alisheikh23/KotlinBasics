@@ -102,8 +102,127 @@ class MainActivity : AppCompatActivity() {
 
 
         //Operators
-        
+        var m=5
+        println(m)
+        m=m+1
+        println(m)
+        m++//same as m=m+1
+        println(m)
 
+        var n=4
+        println(m>n)//IT will print true since m=5 and n=4 and so m>n
+        println(m<n)//IT will print false since m=5 and n=4 and so m>n
+
+        /*
+        >  => Greater Than
+        >= => Greater Than Equal To
+        <  => Less Than
+        <= => Less Than Equal To
+        == => Equal To
+        != => Not Equal To
+        && => AND
+        || => OR
+         */
+
+        //IF Statements
+        println("m= "+m)
+        println("n= "+n)
+        if (m>n){
+            println("It's true , m is greater than n")
+        }
+        n=9
+        m=3
+        println("m= "+m)
+        println("n= "+n)
+        if (m>n){
+            println("It's False , m is Less than n")
+        }
+        else {
+            println("It's true , n is greater than m")
+        }
+
+        n=3
+        m=3
+        println("m= "+m)
+        println("n= "+n)
+        if (m>n){
+            println("It's False")
+        }
+        else if (n>m) {
+            println("It's false ")
+        }
+        else{
+            println("It's true ")
+        }
+
+
+        //Switch Statement. Sometime it is better to use 'switch' than 'if' to make code elegant and efficient
+        var day=1
+        var dayString=" "
+        if (day==1){
+            println("Monday")
+        }
+       else if (day==2){
+            println("Tuesday")
+        }
+       else if (day==3){
+            println("Wednesday")
+        }
+        else if (day==4){
+            println("Thursday")
+        }
+        else if (day==5){
+            println("Friday")
+        }
+       else if (day==6){
+            println("Saturday")
+        }
+       else{
+            println("Sunday")
+        }
+
+        //We can do above work in more simple and easy way using switch
+        when(day){
+            1-> dayString="Monday"
+            2-> dayString="Tuesday"
+            3-> dayString="Wednesday"
+            4-> dayString="Thursday"
+            5-> dayString="Friday"
+            6-> dayString="Saturday"
+            else-> dayString="Sunday"
+        }
+        println(dayString)
+
+
+        //For Loop: Useful with arrays for retrieving and storing values
+
+        val myNumbers= intArrayOf(20,40,50)
+        val r=myNumbers[0]/3*5
+        println("R: "+r)//IF we do this logic with all array elements it will be time consuming So for this we use
+                   // for loops
+        for (number in myNumbers){//Each element of muNumbers create number variable and element stored in that
+            val z=number/3*5      //variable
+            println("Z :" +z)
+        }
+
+        //There is another method using for loop with arrays by creating index and get elements from index
+        for(i in myNumbers.indices){
+            val q=myNumbers[i]/3*5
+            println("Q :"+q)
+        }
+
+        for (a in 0..9){//It means 'a' has some value from 0 to 9
+            val b=a+10
+            println("A :"+a+" B :"+b)
+        }
+        //This loop looks difficult. We can do this task simply and easily using
+        //While Loops
+        var j=0
+        while (j<10){
+            val p=j+10
+            println("J :"+j+" P :"+p)
+            j++
+        }
 
     }
 
